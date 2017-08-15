@@ -5,6 +5,12 @@ var jwt = require('jsonwebtoken')
 var saltRounds = 10
 var salt = bcrypt.genSaltSync(saltRounds);
 
+var getAll = (req, res) => {
+  User.find()
+  .then(users => res.send(users))
+  .catch(err => res.status(500).send(err))
+}
+
 var register = (req, res) => {
   let hash = bcrypt.hashSync(req.body.password, salt);
   let user = new User({
@@ -17,17 +23,19 @@ var register = (req, res) => {
 }
 
 var login = (req, res) => {
-  User.find({username: req.body.username})
+  User.findOne({username: req.body.username})
   .then(user => {
+    console.log(user);
     let token = jwt.sign({
       username: user.username
     }, process.env.SECRET)
-    res.send(token)
+    res.send({token: token, username: user.username})
   })
   .catch(err => res.status(500).send(err))
 }
 
 module.exports = {
   login,
-  register
+  register,
+  getAll
 }
