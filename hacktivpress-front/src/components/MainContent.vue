@@ -15,6 +15,14 @@ export default {
   components: {
     Sidebar,
     ArticleList
+  },
+  methods: {
+    getArticles () {
+      this.$store.dispatch('getArticles')
+    }
+  },
+  created () {
+    this.getArticles()
   }
 }
 </script>

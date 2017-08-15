@@ -27,7 +27,8 @@ var login = (req, res) => {
   .then(user => {
     console.log(user);
     let token = jwt.sign({
-      username: user.username
+      username: user.username,
+      userID: user._id
     }, process.env.SECRET)
     res.send({token: token, username: user.username})
   })

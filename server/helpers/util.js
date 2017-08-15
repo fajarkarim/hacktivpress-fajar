@@ -14,8 +14,7 @@ var authArticle = (req, res, next) => {
   } else {
     Article.findById(req.params.id)
     .populate('author')
-    .then(article => {
-      console.log(`-------- ${decode.username}`);
+    .then(article => {      
       if (article.author.username == decode.username) {
         next()
       } else {
