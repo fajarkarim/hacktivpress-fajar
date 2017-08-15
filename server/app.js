@@ -8,7 +8,9 @@ var compression = require('compression')
 var mongoose = require('mongoose')
 require('dotenv').config()
 
+var index = require('./routes/index')
 var users = require('./routes/users');
+var articles = require('./routes/articles');
 
 var app = express();
 
@@ -20,6 +22,7 @@ app.use(cors())
 app.use(compression())
 
 app.use('/', index);
+app.use('/api/articles', articles)
 app.use('/api/users', users);
 
 // catch 404 and forward to error handler

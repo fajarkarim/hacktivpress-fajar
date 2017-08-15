@@ -1,5 +1,5 @@
 
-var Article = require('../models')
+var Article = require('../models/article')
 
 var getAll = (req, res) => {
   Article.find({})
@@ -22,7 +22,7 @@ var getByCategory = (req, res) => {
   .populate('author')
   .exec()
   .then(articles => res.send(articles))
-  .catch(err => res.status(500)send(err))
+  .catch(err => res.status(500).send(err))
 }
 
 var getByAuthor = (req, res) => {
@@ -35,7 +35,7 @@ var create = (req, res) => {
   let article = new Article({
     title: req.body.title,
     content: req.body.content,
-    category: req.body.category
+    category: req.body.category,
     author: req.body.author
   })
   article.save()
@@ -56,5 +56,11 @@ var update = (req, res) => {
 }
 
 module.exports = {
-  getAll, getOne, create, remove, update
+  getAll,
+  getOne,
+  getByAuthor,
+  getByCategory,
+  create,
+  remove,
+  update
 }

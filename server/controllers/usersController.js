@@ -22,6 +22,12 @@ var login = (req, res) => {
     let token = jwt.sign({
       username: user.username
     }, process.env.SECRET)
+    res.send(token)
   })
-  .catch(err => res.send(err))
+  .catch(err => res.status(500).send(err))
+}
+
+module.exports = {
+  login,
+  register
 }
