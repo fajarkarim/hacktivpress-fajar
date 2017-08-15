@@ -28,7 +28,7 @@ Method | URL | Description |
 ------------ | ------------- | -------------- |
 GET | /articles | get all
 GET | /articles/:id | get one article
-GET | /author/:author | get article by author
+GET | /author/:authorID | get article by author ID
 GET | /category/:category | get article by category
 POST | /articles | create article
 PUT | /articles/:id | edit one article

@@ -17,6 +17,20 @@ var getOne = (req, res) => {
   .catch(err => res.status(500).send(err))
 }
 
+var getByCategory = (req, res) => {
+  Article.find({ category: req.params.category })
+  .populate('author')
+  .exec()
+  .then(articles => res.send(articles))
+  .catch(err => res.status(500)send(err))
+}
+
+var getByAuthor = (req, res) => {
+  Article.find({ author: req.params.authorID })
+  .then(articles => res.send(articles))
+  .catch(err => res.status(500).send(err))
+}
+
 var create = (req, res) => {
   let article = new Article({
     title: req.body.title,
