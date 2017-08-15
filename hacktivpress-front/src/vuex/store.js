@@ -22,6 +22,10 @@ const store = new Vuex.Store({
     },
     setOneArticle (state, payload) {
       state.oneArticle = payload
+    },
+    setLogin (state, payload) {
+      state.login.status = true
+      state.login.userID = payload.id
     }
   },
   actions: {
@@ -32,6 +36,7 @@ const store = new Vuex.Store({
       })
       .then(({ data }) => {
         console.log(data)
+        commit('setLogin', data)
         locaStorage.setItem('userInfo', data)
       })
       .catch(err => console.log(err))
