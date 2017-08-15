@@ -8,7 +8,6 @@ var compression = require('compression')
 var mongoose = require('mongoose')
 require('dotenv').config()
 
-var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
@@ -40,6 +39,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send('error');
 });
+
+mongoose.Promise = global.Promise
 
 var DB_URL = `mongodb://localhost/hacktivpress-fajar`
 mongoose.connect(DB_URL, err => {

@@ -10,7 +10,7 @@ cd server
 npm run dev
 ```
 
-for client : 
+for client :
 ```
 cd client
 npm run dev
@@ -27,12 +27,12 @@ http://localhost:3000/api
 Method | URL | Description |
 ------------ | ------------- | -------------- |
 GET | /articles | get all
-GET | /articles/:articleID | get one article
+GET | /articles/:id | get one article
 GET | /author/:author | get article by author
 GET | /category/:category | get article by category
 POST | /articles | create article
-PUT | /articles/:articleID | edit one article
-DELETE | /articles/:articleID | delete one article
+PUT | /articles/:id | edit one article
+DELETE | /articles/:id | delete one article
 
 ### API user
 
