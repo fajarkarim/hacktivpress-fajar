@@ -1,10 +1,10 @@
 <template lang="html">
   <div  class="col">
     <div v-for="article in articles">
-      <h2>{{ article.title }}</h2>
-      <small>posted by: fajar</small>
-      <p class="pt-2">ini contentnya</p>
-      <p class="text-right"><small>in categories</small></p>
+      <h2><router-link :to="'/articles/' + article._id">{{ article.title }}</router-link></h2>
+      <small>posted by: {{ article.author.username }}</small>
+      <p class="pt-2">{{ article.content }}</p>
+      <p class="text-right"><small>on {{ article.category }}</small></p>
     </div>
   </div>
 </template>

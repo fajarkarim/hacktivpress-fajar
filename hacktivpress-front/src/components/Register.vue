@@ -6,13 +6,13 @@
         <div class="form-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">Username</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputEmail" placeholder="Username">
+            <input v-model="username" type="text" class="form-control" id="inputEmail" placeholder="Username">
           </div>
         </div>
         <div class="form-group row">
           <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            <input v-model="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
           </div>
         </div>
         <div class="row justify-content-center">
@@ -25,7 +25,16 @@
 
 <script>
 export default {
-  name: 'Register'
+  name: 'Register',
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    this.$store.dispatch('doRegister', { username: this.username, password: this.password})
+  }
 }
 </script>
 

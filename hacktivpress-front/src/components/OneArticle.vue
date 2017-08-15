@@ -1,14 +1,30 @@
 <template lang="html">
-  <div class="col">
-    <h2>title</h2>
-    <small>posted by: fajar</small>
-    <p class="pt-2">ini contentnya</p>
-    <p class="text-right"><small>in categories</small></p>
+  <div class="container">
+    <h2>{{ oneArticle.title }}</h2>
+    <small>posted by: {{ oneArticle.author.username}}</small>
+    <p class="pt-2">{{ oneArticle.content }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'OneArticle',
+  props: ['id'],
+  computed: {
+    oneArticle () {
+      return this.$store.state.oneArticle
+    }
+  },
+  methods: {
+    getOneArticle () {
+      this.$store.dispatch('getOneArticle', {
+        id: this.id
+      })
+    }
+  },
+  created () {
+    this.getOneArticle()
+  }
 }
 </script>
 

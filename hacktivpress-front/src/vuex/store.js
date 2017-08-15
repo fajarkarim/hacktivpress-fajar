@@ -13,14 +13,37 @@ const store = new Vuex.Store({
       status: true,
       userID: '59929e5ca3ad4d0ab54e9d6e'
     },
-    articles: []
+    articles: [],
+    oneArticle: {}
   },
   mutations: {
     setArticles (state, payload) {
       state.articles = payload
+    },
+    setOneArticle (state, payload) {
+      state.oneArticle = payload
     }
   },
   actions: {
+    doLogin ({ commit }, payload) {
+      axios.post('/users/login', {
+        username: payload.username,
+        password: payload.password
+      })
+      .then(({ data }) => {
+        console.log(data)
+        locaStorage.setItem('userInfo', data)
+      })
+      .catch(err => console.log(err))
+    },
+    doRegister ({ commit }, payload) {
+      axios.post('/users/register', {
+        username: payload.username,
+        password: payload.password
+      })
+      .then(created => console.log(created))
+      .catch(err => console.log(err))
+    },
     getArticles ({ commit }) {
       axios.get('/articles')
       .then(({ data }) => {
@@ -30,9 +53,10 @@ const store = new Vuex.Store({
         console.log(err)
       })
     },
-    getOneArticles ({ commit }, payload) {
+    getOneArticle ({ commit }, payload) {
       axios.get(`/articles/${payload.id}`)
       .then(({ data }) => {
+        console.log(data)
         commit('setOneArticle', data)
       })
       .catch(err => {
