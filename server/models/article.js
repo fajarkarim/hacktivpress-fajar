@@ -6,7 +6,7 @@ var articleSchema = new Schema({
   title: String,
   content: String,
   category: String,
-  author: { type: Schema.Types.ObjectId, ref: 'Story' }
+  author: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {timestamps: true})
 
 var Article = mongoose.model('Article', articleSchema)
